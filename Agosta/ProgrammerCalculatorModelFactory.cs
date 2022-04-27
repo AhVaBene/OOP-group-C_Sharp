@@ -31,7 +31,7 @@ namespace Agosta
             return char.ToString(str.ElementAt(0)) + unsigned;
         }
 
-        public static double Not(double n1)
+        private static double Not(double n1)
         {
             string conv = ConversionAlgorithms.ToBase((long)n1, 2);
             string addedZero = AddLeadingZerosToByte(conv);
@@ -44,5 +44,25 @@ namespace Agosta
             }
             return ConversionAlgorithms.ToSignedDecimal(sign + ret, 2);
         }
+
+        public static double RoR(double n1, double n2)
+        {
+            string conv = ConversionAlgorithms.ToBase((long)n1, 2);
+            string addedZero = AddLeadingZerosToByte(conv);
+            string sign = Char.ToString(conv.ElementAt(0));
+            string ret = addedZero.Substring(1);
+            ret = ret.Substring(ret.Length - (int)n2) + ret.Substring(0, ret.Length - (int)n2);
+            return ConversionAlgorithms.ToSignedDecimal(sign + ret, 2);
+        }
+        public static double RoL(double n1, double n2)
+        {
+            string conv = ConversionAlgorithms.ToBase((long)n1, 2);
+            string addedZero = AddLeadingZerosToByte(conv);
+            string sign = Char.ToString(conv.ElementAt(0));
+            string ret = addedZero.Substring(1);
+            ret = ret.Substring((int)n2) + ret.Substring(0, (int)n2);
+            return ConversionAlgorithms.ToSignedDecimal(sign + ret, 2);
+        }
+
     }
 }
