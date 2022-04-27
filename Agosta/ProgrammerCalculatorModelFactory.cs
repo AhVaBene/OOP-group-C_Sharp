@@ -13,7 +13,12 @@ namespace Agosta
         }
 
         private static double And(double n1, double n2) => (long)n1 & (long)n2;
+
         private static double Or(double n1, double n2) => (long)n1 | (long)n2;
+
+        private static double Nand(double n1, double n2) => Not(And(n1, n2));
+
+        private static double Nor(double n1, double n2) => Not(Or(n1, n2));
 
         private static double Xor(double n1, double n2) => (long)n1 ^ (long)n2;
 
@@ -45,7 +50,7 @@ namespace Agosta
             return ConversionAlgorithms.ToSignedDecimal(sign + ret, 2);
         }
 
-        public static double RoR(double n1, double n2)
+        private static double RoR(double n1, double n2)
         {
             string conv = ConversionAlgorithms.ToBase((long)n1, 2);
             string addedZero = AddLeadingZerosToByte(conv);
@@ -54,7 +59,7 @@ namespace Agosta
             ret = ret.Substring(ret.Length - (int)n2) + ret.Substring(0, ret.Length - (int)n2);
             return ConversionAlgorithms.ToSignedDecimal(sign + ret, 2);
         }
-        public static double RoL(double n1, double n2)
+        private static double RoL(double n1, double n2)
         {
             string conv = ConversionAlgorithms.ToBase((long)n1, 2);
             string addedZero = AddLeadingZerosToByte(conv);
