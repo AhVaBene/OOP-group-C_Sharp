@@ -25,21 +25,21 @@ namespace Agosta
             string sign = (value >= 0) ? "+" : "-";
             return sign + Convert.ToString(abs, 16).ToUpper();
         }
-        private static long hexadecimalLetters(char bit)
+        private static long hexadecimalLetters(string bit)
         {
             switch (bit)
             {
-                case 'A':
+                case "A":
                     return 10;
-                case 'B':
+                case "B":
                     return 11;
-                case 'C':
+                case "C":
                     return 12;
-                case 'D':
+                case "D":
                     return 13;
-                case 'E':
+                case "E":
                     return 14;
-                case 'F':
+                case "F":
                     return 15;
                 default:
                     return Convert.ToInt64(bit);
@@ -50,7 +50,7 @@ namespace Agosta
             long ret = 0;
             for(int i = 1; i < value.Length; i++)
             {
-                ret += (long)(hexadecimalLetters(value.ElementAt(i)) * Math.Pow(convBase, value.Length - 1 - i));
+                ret += (long)(hexadecimalLetters(char.ToString(value.ElementAt(i))) * Math.Pow(convBase, value.Length - 1 - i));
             }
             return ret;
         }
@@ -59,7 +59,7 @@ namespace Agosta
             long ret = 0;
             for (int i = 1; i < value.Length; i++)
             {
-                ret += (long)(hexadecimalLetters(value.ElementAt(i)) * Math.Pow(convBase, value.Length - 1 - i));
+                ret += (long)(hexadecimalLetters(char.ToString(value.ElementAt(i))) * Math.Pow(convBase, value.Length - 1 - i));
             }
             return (value.ElementAt(0).Equals('+')) ? ret : ret * -1;
         }
